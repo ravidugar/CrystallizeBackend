@@ -10,7 +10,7 @@ namespace CrystallizeBackendLib
 {
     public class WebRequest<T>
     {
-        private static HttpWebResponse MakeRequest(Request request)
+        private static HttpWebResponse GetResponse(Request request)
         {
             string requestURIString = GetRequestURIString(request.RequestType);
 
@@ -18,9 +18,9 @@ namespace CrystallizeBackendLib
 
             webRequest.Method = "POST";
 
-            webRequest.ContentType = "text/xml; encoding='utf-8'"; // check this once
+            webRequest.ContentType = "application/json"; // check this once
 
-            // TODO : convert the request object into xml format
+            // TODO : convert the request object into json format
             string data = JSONConverter<Request>.SerializeObject(request); // write code to convert the request object to xml
 
             byte[] dataBytes = System.Text.Encoding.ASCII.GetBytes(data);
@@ -42,7 +42,7 @@ namespace CrystallizeBackendLib
             request.RequestType = RequestType.QUERY;
 
             // code to get response
-            HttpWebResponse webResponse = MakeRequest(request);
+            HttpWebResponse webResponse = GetResponse(request);
 
             if (webResponse.StatusCode != HttpStatusCode.OK) return default(T); // failure
 
@@ -63,11 +63,17 @@ namespace CrystallizeBackendLib
             return retVal;
         }
 
-        public static bool SaveData(Request request)
+        public static bool SaveData(Request request, T obj)
         {
             bool retVal = true;
 
             request.RequestType = RequestType.INSERT;
+
+            request.Data = JSONConverter<T>.SerializeObject(obj);
+
+            HttpWebResponse webResponse = GetResponse(request);
+
+            if (webResponse.StatusCode != HttpStatusCode.OK) return false;
 
             return retVal;
         }
@@ -77,6 +83,10 @@ namespace CrystallizeBackendLib
             bool retVal = true;
 
             request.RequestType = RequestType.DELETE;
+
+            HttpWebResponse webResponse = GetResponse(request);
+
+            if (webResponse.StatusCode != HttpStatusCode.OK) return false; 
 
             return retVal;
         }
