@@ -41,7 +41,7 @@ namespace CrystallizeBackendLib.Common
         /// <summary>
         /// Specifies the object Id
         /// </summary>
-        public string ObjectId { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Data to be written during Insert operation

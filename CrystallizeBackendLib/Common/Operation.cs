@@ -7,7 +7,17 @@ namespace CrystallizeBackendLib.Common
     public enum Operator
     {
         EQ,
-        LS,
-        GE
+        NE,
+        LE,
+        LT,
+        GE,
+        GT,
+        NOT_NULL,
+        NULL,
+        CONTAINS,
+        NOT_CONTAINS,
+        BEGINS_WITH,
+        IN,
+        BETWEEN
     }
 }
