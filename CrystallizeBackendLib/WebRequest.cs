@@ -10,7 +10,7 @@ namespace CrystallizeBackendLib
 {
     public class WebRequest<T>
     {
-        private static HttpWebResponse GetResponse(Request request)
+        private static Response GetResponse(Request request)
         {
             string requestURIString = GetRequestURIString(request.RequestType);
 
@@ -20,7 +20,6 @@ namespace CrystallizeBackendLib
 
             webRequest.ContentType = "application/json"; // check this once
 
-            // TODO : convert the request object into json format
             string data = JSONConverter<Request>.SerializeObject(request); // write code to convert the request object to xml
 
             byte[] dataBytes = System.Text.Encoding.ASCII.GetBytes(data);
@@ -34,7 +33,22 @@ namespace CrystallizeBackendLib
             // code to get response
             HttpWebResponse webResponse = (HttpWebResponse)webRequest.GetResponse();
 
-            return webResponse;
+            Response response = new Response();
+
+            if (webResponse.StatusCode != HttpStatusCode.OK) return response; // failure
+
+            Stream webResponseStream = webResponse.GetResponseStream();
+
+            StreamReader readStream = new StreamReader(webResponseStream);
+
+            string result = readStream.ReadToEnd();
+
+#if DEBUG
+            Console.WriteLine(result);
+#endif
+            response = JSONConverter<Response>.DeserializeObject(result);
+
+            return response;
         }
 
         public static T GetData(Request request)
@@ -42,55 +56,38 @@ namespace CrystallizeBackendLib
             request.RequestType = RequestType.QUERY;
 
             // code to get response
-            HttpWebResponse webResponse = GetResponse(request);
+            Response response = GetResponse(request);
 
-            if (webResponse.StatusCode != HttpStatusCode.OK) return default(T); // failure
+            if (response.Ok == false)
+            {
+                T retVal = JSONConverter<T>.DeserializeObject(response.Result);
 
-            Stream webResponseStream = webResponse.GetResponseStream();
+                return retVal;
+            }
 
-            StreamReader readStream = new StreamReader(webResponseStream);
-
-            Response response = new Response();
-
-            response.Data = readStream.ReadToEnd();
-
-#if DEBUG
-            Console.WriteLine(response.Data);
-#endif
-
-            T retVal = JSONConverter<T>.DeserializeObject(response.Data);
-
-            return retVal;
+            return default(T);
         }
 
         public static bool SaveData(Request request, T obj)
         {
-            bool retVal = true;
-
             request.RequestType = RequestType.INSERT;
 
-            request.Data = JSONConverter<T>.SerializeObject(obj);
+            request.Document = JSONConverter<T>.SerializeObject(obj);
 
-            HttpWebResponse webResponse = GetResponse(request);
+            Response response = GetResponse(request);
 
-            if (webResponse.StatusCode != HttpStatusCode.OK) return false;
-
-            return retVal;
+            return response.Ok;
         }
 
         public static bool DeleteData(Request request)
         {
-            bool retVal = true;
-
             request.RequestType = RequestType.DELETE;
 
-            HttpWebResponse webResponse = GetResponse(request);
+            Response response = GetResponse(request);
 
-            if (webResponse.StatusCode != HttpStatusCode.OK) return false; 
-
-            return retVal;
+            return response.Ok;
         }
-
+        
         private static String GetRequestURIString(RequestType requestType)
         {
             string retVal = Constants.JAVA_API_ADDRESSS;
@@ -98,7 +95,9 @@ namespace CrystallizeBackendLib
             switch (requestType)
             {
                 case RequestType.DELETE: return retVal + Constants.DELETE_SERVLET;
+
                 case RequestType.INSERT: return retVal + Constants.INSERT_SERVLET;
+
                 case RequestType.QUERY: return retVal + Constants.QUERY_SERVLET;
             }
 

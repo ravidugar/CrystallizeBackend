@@ -6,6 +6,14 @@ namespace CrystallizeBackendLib.Common
 {
     public class Response
     {
-        public string Data { get; set; }
+        /// <summary>
+        /// store the success
+        /// </summary>
+        public bool Ok { get; set; }
+ 
+        /// <summary>
+        /// store the return message
+        /// </summary>
+        public string Result { get; set; }
     }
 }

@@ -9,46 +9,45 @@ namespace CrystallizeBackendLib.Common
         /// <summary>
         /// Collection name to be queried from 
         /// </summary>
-        public string CollectionName { get; set; }
+        public string Attribute { get; set; }
 
         /// <summary>
-        /// Specifies all the conditions for the query
-        /// eg : get all players with names equal to Ravi or Peter and age is 50
-        /// Condition.Add("name", new List<object>());
-        /// Collection["name"].Add("Ravi");
-        /// Collection["name"].Add("Peter");
-        /// Condition.Add("age", new List<object>())
-        /// Coniditon["age"].Add(50);
+        /// operation to be performed
         /// </summary>
-        public Dictionary<string, List<object>> Conditions
+        public Operator Operator { get; set; }
+
+        /// <summary>
+        /// Specifies all the values to be compared
+        /// </summary>
+        public List<object> Values
         {
-            get { return this.conditions; }
-            set { this.conditions = value; }
+            get { return this.values; }
+            set { this.values = value; }
         }
 
         /// <summary>
         /// private members
         /// </summary>
-        private Dictionary<string, List<object>> conditions = new Dictionary<string, List<object>>();
+        private List<object> values = new List<object>();
     }
 
     public class Request
     {
         /// <summary>
-        /// Data to be written during Insert operation
+        /// Specifies the table name
         /// </summary>
-        public string Data { get; set; }
+        public string Table { get; set; }
 
         /// <summary>
-        /// Specified which database to be queried from
+        /// Specifies the object Id
         /// </summary>
-        public DatabaseType DatabaseType { get; set; }
-        
+        public string ObjectId { get; set; }
+
         /// <summary>
-        /// Specifies what response is desired
+        /// Data to be written during Insert operation
         /// </summary>
-        public ResponseType ResponseType { get; set; }
-        
+        public string Document { get; set; }
+
         /// <summary>
         /// Specifies the request type (Insert, Delete or Query/Find)
         /// </summary>
@@ -72,21 +71,11 @@ namespace CrystallizeBackendLib.Common
             get { return this.filters; }
             set {   this.filters = value;}
         }
-        
-        /// <summary>
-        /// Not in use
-        /// </summary>
-        public List<String> Outputs
-        {
-            get { return this.outputs; }
-            set { this.outputs = value; }
-        }
 
         /// <summary>
         /// private members
         /// </summary>
         private List<Query> queries = new List<Query>();
         private List<string> filters = new List<string>();
-        private List<string> outputs = new List<string>();
     }
 }
