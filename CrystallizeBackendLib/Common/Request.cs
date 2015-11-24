@@ -36,46 +36,46 @@ namespace CrystallizeBackendLib.Common
         /// <summary>
         /// Specifies the table name
         /// </summary>
-        public string Table { get; set; }
+        public string table { get; set; }
 
         /// <summary>
         /// Specifies the object Id
         /// </summary>
-        public string Id { get; set; }
+        public string ID { get; set; }
 
         /// <summary>
         /// Data to be written during Insert operation
         /// </summary>
-        public string Document { get; set; }
+        public string document { get; set; }
 
         /// <summary>
         /// Specifies the request type (Insert, Delete or Query/Find)
         /// </summary>
-        public RequestType RequestType { get; set; }
+        public RequestType requestType { get; set; }
         
         /// <summary>
         /// Specifies the conditions (where clause)
         /// </summary>
-        public List<Query> Queries
+        public List<Query> queries
         {
-            get { return this.queries; }
-            set { this.queries = value; }
+            get { return this.queries1; }
+            set { this.queries1 = value; }
         }
         
         
         /// <summary>
         /// Desired output attributes
         /// </summary>
-        public List<string> Filters
+        public List<string> filters
         {
-            get { return this.filters; }
-            set {   this.filters = value;}
+            get { return this.filters1; }
+            set {   this.filters1 = value;}
         }
 
         /// <summary>
         /// private members
         /// </summary>
-        private List<Query> queries = new List<Query>();
-        private List<string> filters = new List<string>();
+        private List<Query> queries1 = new List<Query>();
+        private List<string> filters1 = new List<string>();
     }
 }

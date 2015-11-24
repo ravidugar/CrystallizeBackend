@@ -33,7 +33,15 @@ namespace CrystallizeBackend
 
             Person p = new Person() { Age = 25, Name = "Ravi" };
 
-            Console.WriteLine (CrystallizeBackendLib.Utils.JSONConverter<Person>.SerializeObject(p));
+            CrystallizeBackendLib.Common.Request r = new CrystallizeBackendLib.Common.Request();
+
+            r.ID = "123";
+            r.table = "Test";
+            r.requestType = CrystallizeBackendLib.Common.RequestType.DELETE;
+
+            bool retVal = CrystallizeBackendLib.WebRequest<object>.DeleteData(r);
+
+           // Console.WriteLine (CrystallizeBackendLib.Utils.JSONConverter<Person>.SerializeObject(p));
 
             Console.ReadLine();
         }

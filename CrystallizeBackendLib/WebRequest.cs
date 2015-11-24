@@ -12,7 +12,7 @@ namespace CrystallizeBackendLib
     {
         private static Response GetResponse(Request request)
         {
-            string requestURIString = GetRequestURIString(request.RequestType);
+            string requestURIString = GetRequestURIString(request.requestType);
 
             HttpWebRequest webRequest = (HttpWebRequest)System.Net.WebRequest.Create(requestURIString);
 
@@ -53,7 +53,7 @@ namespace CrystallizeBackendLib
 
         public static T GetData(Request request)
         {
-            request.RequestType = RequestType.QUERY;
+            request.requestType = RequestType.QUERY;
 
             // code to get response
             Response response = GetResponse(request);
@@ -70,9 +70,9 @@ namespace CrystallizeBackendLib
 
         public static bool SaveData(Request request, T obj)
         {
-            request.RequestType = RequestType.INSERT;
+            request.requestType = RequestType.INSERT;
 
-            request.Document = JSONConverter<T>.SerializeObject(obj);
+            request.document = JSONConverter<T>.SerializeObject(obj);
 
             Response response = GetResponse(request);
 
@@ -81,7 +81,7 @@ namespace CrystallizeBackendLib
 
         public static bool DeleteData(Request request)
         {
-            request.RequestType = RequestType.DELETE;
+            request.requestType = RequestType.DELETE;
 
             Response response = GetResponse(request);
 
