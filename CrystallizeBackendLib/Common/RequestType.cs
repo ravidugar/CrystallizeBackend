@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CrystallizeBackendLib.Common
+namespace CrystallizeBackendLib
 {
     public enum RequestType
     {

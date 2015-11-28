@@ -15,34 +15,21 @@ namespace CrystallizeBackend
         public int Age { get; set; }
     }
 
+    public class College
+    {
+        public string CollegeName { get; set; }
+    }
+
     class Program
     {
         static void Main(string[] args)
         {
-            //HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create("http://localhost:8080/CrystallizeBackend/Query");
+            TestInsert.SaveData();
 
-            //HttpWebResponse webResponse = (HttpWebResponse)webRequest.GetResponse();
+            TestQuery.GetData();
 
-            //Stream receiveStream = webResponse.GetResponseStream();
-
-            //StreamReader readStream = new StreamReader(receiveStream);
-
-            //Console.WriteLine(webResponse.ContentType);
-
-            //Console.WriteLine(readStream.ReadToEnd());
-
-            Person p = new Person() { Age = 25, Name = "Ravi" };
-
-            CrystallizeBackendLib.Common.Request r = new CrystallizeBackendLib.Common.Request();
-
-            r.ID = "123";
-            r.table = "Test";
-            r.requestType = CrystallizeBackendLib.Common.RequestType.DELETE;
-
-            bool retVal = CrystallizeBackendLib.WebRequest<object>.DeleteData(r);
-
-           // Console.WriteLine (CrystallizeBackendLib.Utils.JSONConverter<Person>.SerializeObject(p));
-
+            TestDelete.DeleteData();
+           
             Console.ReadLine();
         }
     }
