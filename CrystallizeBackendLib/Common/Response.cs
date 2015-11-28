@@ -9,11 +9,11 @@ namespace CrystallizeBackendLib.Common
         /// <summary>
         /// store the success
         /// </summary>
-        public bool Ok { get; set; }
+        public bool ok { get; set; }
  
         /// <summary>
         /// store the return message
         /// </summary>
-        public string Result { get; set; }
+        public string result { get; set; }
     }
 }

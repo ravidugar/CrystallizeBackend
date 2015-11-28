@@ -6,33 +6,55 @@ namespace CrystallizeBackendLib.Common
 {
     public class Query
     {
+        public Query()
+        {
+            this.values = new List<object>();
+        }
+
         /// <summary>
         /// Collection name to be queried from 
         /// </summary>
-        public string Attribute { get; set; }
+        public string attribute { get; set; }
 
         /// <summary>
         /// operation to be performed
         /// </summary>
-        public Operator Operator { get; set; }
+        public Operator op { get; set; }
 
         /// <summary>
         /// Specifies all the values to be compared
         /// </summary>
-        public List<object> Values
-        {
-            get { return this.values; }
-            set { this.values = value; }
-        }
-
-        /// <summary>
-        /// private members
-        /// </summary>
-        private List<object> values = new List<object>();
+        public List<object> values { get; set; }
     }
 
     public class Request
     {
+        public Request()
+        {
+            this.queries = new List<Query>();
+            this.filters = new List<string>();
+        }
+
+        /// <summary>
+        /// Adds a Query to Request
+        /// </summary>
+        /// <param name="attribute">Attribute name</param>
+        /// <param name="op">Type of operation</param>
+        /// <param name="values">Values to be compared against</param>
+        public void AddQuery(string attribute, Operator op, List<object> values)
+        {
+            this.queries.Add(new Query() { attribute = attribute, op = op, values = values });
+        }
+
+        /// <summary>
+        /// Adds a filter to request
+        /// </summary>
+        /// <param name="filterName">Attribute name</param>
+        public void AddFilter(string filterName)
+        {
+            this.filters.Add(filterName);
+        }
+
         /// <summary>
         /// Specifies the table name
         /// </summary>
@@ -46,7 +68,7 @@ namespace CrystallizeBackendLib.Common
         /// <summary>
         /// Data to be written during Insert operation
         /// </summary>
-        public string document { get; set; }
+        public object document { get; set; }
 
         /// <summary>
         /// Specifies the request type (Insert, Delete or Query/Find)
@@ -56,26 +78,11 @@ namespace CrystallizeBackendLib.Common
         /// <summary>
         /// Specifies the conditions (where clause)
         /// </summary>
-        public List<Query> queries
-        {
-            get { return this.queries1; }
-            set { this.queries1 = value; }
-        }
-        
+        public List<Query> queries { get; set; }        
         
         /// <summary>
         /// Desired output attributes
         /// </summary>
-        public List<string> filters
-        {
-            get { return this.filters1; }
-            set {   this.filters1 = value;}
-        }
-
-        /// <summary>
-        /// private members
-        /// </summary>
-        private List<Query> queries1 = new List<Query>();
-        private List<string> filters1 = new List<string>();
+        public List<string> filters { get; set; }
     }
 }

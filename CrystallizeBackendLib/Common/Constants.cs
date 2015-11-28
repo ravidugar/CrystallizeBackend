@@ -8,7 +8,7 @@ namespace CrystallizeBackendLib.Common
     {
         static Constants()
         {
-            JAVA_API_ADDRESSS = "http://test-na2tw2cwcz.elasticbeanstalk.com"; // code to read from some xml config
+            JAVA_API_ADDRESSS = "http://gabedemo-h7jfpifzv2.elasticbeanstalk.com"; // code to read from some xml config
         }
 
         /// <summary>

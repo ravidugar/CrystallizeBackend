@@ -18,9 +18,10 @@ namespace CrystallizeBackendLib
 
             webRequest.Method = "POST";
 
-            webRequest.ContentType = "application/json"; // check this once
+            webRequest.ContentType = "application/json";
 
-            string data = JSONConverter<Request>.SerializeObject(request); // write code to convert the request object to xml
+            // write code to convert the request object to xml
+            string data = JSONConverter<Request>.SerializeObject(request);
 
             byte[] dataBytes = System.Text.Encoding.ASCII.GetBytes(data);
 
@@ -58,9 +59,9 @@ namespace CrystallizeBackendLib
             // code to get response
             Response response = GetResponse(request);
 
-            if (response.Ok == false)
+            if (response.ok == false)
             {
-                T retVal = JSONConverter<T>.DeserializeObject(response.Result);
+                T retVal = JSONConverter<T>.DeserializeObject(response.result);
 
                 return retVal;
             }
@@ -72,11 +73,11 @@ namespace CrystallizeBackendLib
         {
             request.requestType = RequestType.INSERT;
 
-            request.document = JSONConverter<T>.SerializeObject(obj);
+            request.document = obj;
 
             Response response = GetResponse(request);
 
-            return response.Ok;
+            return response.ok;
         }
 
         public static bool DeleteData(Request request)
@@ -85,7 +86,7 @@ namespace CrystallizeBackendLib
 
             Response response = GetResponse(request);
 
-            return response.Ok;
+            return response.ok;
         }
         
         private static String GetRequestURIString(RequestType requestType)
