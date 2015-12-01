@@ -31,7 +31,7 @@ namespace CrystallizeBackendLib
     {
         public Request()
         {
-            this.queries = new List<Query>();
+            this.query = new List<Query>();
             this.filters = new List<string>();
         }
 
@@ -43,7 +43,7 @@ namespace CrystallizeBackendLib
         /// <param name="values">Values to be compared against</param>
         public void AddQuery(string attribute, Operator op, List<object> values)
         {
-            this.queries.Add(new Query() { attribute = attribute, op = op, values = values });
+            this.query.Add(new Query() { attribute = attribute, op = op, values = values });
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace CrystallizeBackendLib
         /// <summary>
         /// Specifies the conditions (where clause)
         /// </summary>
-        public List<Query> queries { get; set; }        
+        public List<Query> query { get; set; }        
         
         /// <summary>
         /// Desired output attributes

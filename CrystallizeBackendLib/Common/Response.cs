@@ -14,6 +14,6 @@ namespace CrystallizeBackendLib
         /// <summary>
         /// store the return message
         /// </summary>
-        public string result { get; set; }
+        public string results { get; set; }
     }
 }
