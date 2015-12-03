@@ -9,7 +9,7 @@ namespace CrystallizeBackendLib
         public static bool Initialize(string serverAddress)
         {
             if (serverAddress == null || String.IsNullOrEmpty(serverAddress)) return false;
-            serverAddress = serverAddress.TrimEnd('\\');
+            serverAddress = serverAddress.TrimEnd('/');
             Constants.JAVA_API_ADDRESSS = serverAddress;
             return true;
         }
