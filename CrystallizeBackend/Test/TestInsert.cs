@@ -5,11 +5,28 @@ using System.Text;
 
 namespace CrystallizeBackend
 {
+    public class FullName
+    {
+        public string Firstname {get;set;}
+        public string Lastname{get;set;}
+    }
+
+
     class TestInsert
     {
+
+
         public static void SaveData()
         {
-            Person person = new Person() { Age = 25, Name = "Ravi Dugar" };
+            Person person = new Person() { Age = 25, Name = new FullName() { Firstname = "Ravi", Lastname = "Dugar" } };
+
+            string test = CrystallizeBackendLib.JSONConverter<Person>.SerializeObject(person);
+
+            Console.WriteLine(test);
+
+            Person x = CrystallizeBackendLib.JSONConverter<Person>.DeserializeObject(test);
+
+
 
             CrystallizeBackendLib.Request request = new CrystallizeBackendLib.Request();
 

@@ -13,11 +13,15 @@ namespace CrystallizeBackend
 
             request.requestType = CrystallizeBackendLib.RequestType.QUERY;
 
-            request.AddQuery("age", CrystallizeBackendLib.Operator.EQ, new List<object>(){25});
+            request.ID = "234";
 
-            Person result = CrystallizeBackendLib.WebRequest<Person>.GetData(request);
+            request.table = "Test";
+
+            request.AddQuery("ID", CrystallizeBackendLib.Operator.EQ, new List<object>(){"234"});
+
+            List<Person> result = CrystallizeBackendLib.WebRequest<List<Person>>.GetData(request);
             
-            Console.WriteLine(result.Name);
+            Console.WriteLine(result[0].Name);
         }
     }
 }

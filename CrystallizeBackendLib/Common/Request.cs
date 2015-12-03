@@ -19,7 +19,7 @@ namespace CrystallizeBackendLib
         /// <summary>
         /// operation to be performed
         /// </summary>
-        public Operator op { get; set; }
+        public string op { get; set; }
 
         /// <summary>
         /// Specifies all the values to be compared
@@ -35,25 +35,36 @@ namespace CrystallizeBackendLib
             this.filters = new List<string>();
         }
 
+        #region Methods
+
         /// <summary>
         /// Adds a Query to Request
         /// </summary>
         /// <param name="attribute">Attribute name</param>
         /// <param name="op">Type of operation</param>
         /// <param name="values">Values to be compared against</param>
-        public void AddQuery(string attribute, Operator op, List<object> values)
+        public void AddQuery(string attribute, Operator op, params object[] values)
         {
-            this.query.Add(new Query() { attribute = attribute, op = op, values = values });
+            Query tempquery = new Query() { attribute = attribute, op = op.ToString() };
+            tempquery.values.AddRange(values);
+            this.query.Add(tempquery);
+            
         }
 
         /// <summary>
         /// Adds a filter to request
         /// </summary>
         /// <param name="filterName">Attribute name</param>
-        public void AddFilter(string filterName)
+        public void AddFilter(params string[] filterNames)
         {
-            this.filters.Add(filterName);
+            this.filters.AddRange(filterNames);
         }
+
+
+
+        #endregion
+
+        #region Attributes
 
         /// <summary>
         /// Specifies the table name
@@ -84,5 +95,7 @@ namespace CrystallizeBackendLib
         /// Desired output attributes
         /// </summary>
         public List<string> filters { get; set; }
+
+        #endregion
     }
 }

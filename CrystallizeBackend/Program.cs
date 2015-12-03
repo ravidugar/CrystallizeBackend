@@ -11,7 +11,7 @@ namespace CrystallizeBackend
     
     public class Person
     {
-        public string Name { get; set; }
+        public FullName Name { get; set; }
         public int Age { get; set; }
     }
 
@@ -28,9 +28,10 @@ namespace CrystallizeBackend
 
             TestQuery.GetData();
 
-            TestDelete.DeleteData();
+            //TestDelete.DeleteData();
            
             Console.ReadLine();
+            
         }
     }
 }

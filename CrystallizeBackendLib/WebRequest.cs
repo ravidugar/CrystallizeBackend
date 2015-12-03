@@ -59,7 +59,7 @@ namespace CrystallizeBackendLib
 
             if (response.ok == false)
             {
-                T retVal = JSONConverter<T>.DeserializeObject(response.result);
+                T retVal = (T)(response.results);
 
                 return retVal;
             }
