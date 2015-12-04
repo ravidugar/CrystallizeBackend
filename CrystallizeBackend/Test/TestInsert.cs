@@ -20,17 +20,15 @@ namespace CrystallizeBackend
     {
         public static void SaveData()
         {
-            Person person = new Person() {Age = 25, Name = new FullName() { Firstname = "Ravi", Lastname = "Dugar" } };
+            var person = new Person() {Age = 25, Name = new FullName() { Firstname = "Ravi", Lastname = "Dugar" } };
 
-            CrystallizeBackendLib.Request request = new CrystallizeBackendLib.Request("Test");
+            var request = new CrystallizeBackendLib.Request<Person>("Test");
 
-            request.ID = "234";
+            request.ID = "236";
                         
-            request.requestType = CrystallizeBackendLib.RequestType.INSERT;
+            var retVal = request.SaveData(person);
 
-            bool retVal = CrystallizeBackendLib.WebRequest<object>.SaveData(request, person);
-
-            if (retVal == false)
+            if (retVal.ok == false)
             {
                 Console.WriteLine("Insert Test failed");
             }

@@ -9,15 +9,13 @@ namespace CrystallizeBackend
     {
         public static void DeleteData()
         {
-            CrystallizeBackendLib.Request request = new CrystallizeBackendLib.Request("Test");
+            var request = new CrystallizeBackendLib.Request<object>("Test");
 
             request.ID = "234";
             
-            request.requestType = CrystallizeBackendLib.RequestType.DELETE;
-
-            bool retVal = CrystallizeBackendLib.WebRequest<object>.DeleteData(request);
-
-            if (retVal == false)
+            var response = request.DeleteData();
+           
+            if (response.ok == false)
             {
                 Console.WriteLine("Delete Test failed");
             }

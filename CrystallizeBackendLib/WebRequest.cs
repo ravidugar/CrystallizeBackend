@@ -6,101 +6,101 @@ using System.IO;
 
 namespace CrystallizeBackendLib
 {
-    public class WebRequest<T>
-    {
-        private static Response<T> GetResponse(Request request)
-        {
-            string requestURIString = GetRequestURIString(request.requestType);
+//    public class WebRequest<T>
+//    {
+//        private static Response<T> GetResponse(Request request)
+//        {
+//            string requestURIString = GetRequestURIString(request.requestType);
 
-            HttpWebRequest webRequest = (HttpWebRequest)System.Net.WebRequest.Create(requestURIString);
+//            HttpWebRequest webRequest = (HttpWebRequest)System.Net.WebRequest.Create(requestURIString);
 
-            webRequest.Method = "POST";
+//            webRequest.Method = "POST";
 
-            webRequest.ContentType = "application/json";
+//            webRequest.ContentType = "application/json";
 
-            // write code to convert the request object to xml
-            string data = JSONConverter<Request>.SerializeObject(request);
+//            // write code to convert the request object to xml
+//            string data = JSONConverter<Request>.SerializeObject(request);
 
-            byte[] dataBytes = System.Text.Encoding.ASCII.GetBytes(data);
+//            byte[] dataBytes = System.Text.Encoding.ASCII.GetBytes(data);
 
-            Stream webRequestStream = webRequest.GetRequestStream();
+//            Stream webRequestStream = webRequest.GetRequestStream();
 
-            webRequestStream.Write(dataBytes, 0, dataBytes.Length);
+//            webRequestStream.Write(dataBytes, 0, dataBytes.Length);
 
-            webRequestStream.Close();
+//            webRequestStream.Close();
 
-            // code to get response
-            HttpWebResponse webResponse = (HttpWebResponse)webRequest.GetResponse();
+//            // code to get response
+//            HttpWebResponse webResponse = (HttpWebResponse)webRequest.GetResponse();
 
-            Response<T> response = new Response<T>();
+//            Response<T> response = new Response<T>();
 
-            if (webResponse.StatusCode != HttpStatusCode.OK) return response; // failure
+//            if (webResponse.StatusCode != HttpStatusCode.OK) return response; // failure
 
-            Stream webResponseStream = webResponse.GetResponseStream();
+//            Stream webResponseStream = webResponse.GetResponseStream();
 
-            StreamReader readStream = new StreamReader(webResponseStream);
+//            StreamReader readStream = new StreamReader(webResponseStream);
 
-            string result = readStream.ReadToEnd();
+//            string result = readStream.ReadToEnd();
 
-#if DEBUG
-            Console.WriteLine(result);
-#endif
-            response = JSONConverter<Response<T>>.DeserializeObject(result);
+//#if DEBUG
+//            Console.WriteLine(result);
+//#endif
+//            response = JSONConverter<Response<T>>.DeserializeObject(result);
 
-            return response;
-        }
+//            return response;
+//        }
 
-        public static List<T> GetData(Request request)
-        {
-            request.requestType = RequestType.QUERY;
+//        public static List<T> GetData(Request request)
+//        {
+//            request.requestType = RequestType.QUERY;
 
-            // code to get response
-            Response<T> response = GetResponse(request);
+//            // code to get response
+//            Response<T> response = GetResponse(request);
 
-            if (response.ok == true)
-            {
-                List<T> retVal = response.results;
+//            if (response.ok == true)
+//            {
+//                List<T> retVal = response.results;
 
-                return retVal;
-            }
+//                return retVal;
+//            }
 
-            return null;
-        }
+//            return null;
+//        }
 
-        public static bool SaveData(Request request, T obj)
-        {
-            request.requestType = RequestType.INSERT;
+//        public static bool SaveData(Request request, T obj)
+//        {
+//            request.requestType = RequestType.INSERT;
 
-            request.document = obj;
+//            request.document = obj;
 
-            Response<T> response = GetResponse(request);
+//            Response<T> response = GetResponse(request);
 
-            return response.ok;
-        }
+//            return response.ok;
+//        }
 
-        public static bool DeleteData(Request request)
-        {
-            request.requestType = RequestType.DELETE;
+//        public static bool DeleteData(Request request)
+//        {
+//            request.requestType = RequestType.DELETE;
 
-            Response<T> response = GetResponse(request);
+//            Response<T> response = GetResponse(request);
 
-            return response.ok;
-        }
+//            return response.ok;
+//        }
         
-        private static String GetRequestURIString(RequestType requestType)
-        {
-            string retVal = Constants.JAVA_API_ADDRESSS;
+//        private static String GetRequestURIString(RequestType requestType)
+//        {
+//            string retVal = Constants.JAVA_API_ADDRESSS;
 
-            switch (requestType)
-            {
-                case RequestType.DELETE: return retVal + Constants.DELETE_SERVLET;
+//            switch (requestType)
+//            {
+//                case RequestType.DELETE: return retVal + Constants.DELETE_SERVLET;
 
-                case RequestType.INSERT: return retVal + Constants.INSERT_SERVLET;
+//                case RequestType.INSERT: return retVal + Constants.INSERT_SERVLET;
 
-                case RequestType.QUERY: return retVal + Constants.QUERY_SERVLET;
-            }
+//                case RequestType.QUERY: return retVal + Constants.QUERY_SERVLET;
+//            }
 
-            return retVal;
-        }
-    }
+//            return retVal;
+//        }
+//    }
 }
