@@ -46,7 +46,6 @@
     <Compile Include="Common\RequestType.cs" />
     <Compile Include="Common\Response.cs" />
     <Compile Include="CrystallizeBackendLib.cs" />
-    <Compile Include="WebRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\JSONConverter.cs" />
   </ItemGroup>
