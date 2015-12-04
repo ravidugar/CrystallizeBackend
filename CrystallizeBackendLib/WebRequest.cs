@@ -57,7 +57,7 @@ namespace CrystallizeBackendLib
             // code to get response
             Response<T> response = GetResponse(request);
 
-            if (response.ok == false)
+            if (response.ok == true)
             {
                 List<T> retVal = response.results;
 

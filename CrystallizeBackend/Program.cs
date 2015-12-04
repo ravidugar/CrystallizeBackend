@@ -26,11 +26,11 @@ namespace CrystallizeBackend
         {
             CrystallizeBackendLib.CrystallizeBackendLib.Initialize("http://testenvironment-gxecgpjx3p.elasticbeanstalk.com/");
 
-            TestInsert.SaveData();
+            //TestInsert.SaveData();
 
             TestQuery.GetData();
 
-            //TestDelete.DeleteData();
+            TestDelete.DeleteData();
            
             Console.ReadLine();
             

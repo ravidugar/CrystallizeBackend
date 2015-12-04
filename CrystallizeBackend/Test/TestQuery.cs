@@ -13,8 +13,6 @@ namespace CrystallizeBackend
 
             request.requestType = CrystallizeBackendLib.RequestType.QUERY;
 
-            request.ID = "234";
-
             request.AddQuery("ID", CrystallizeBackendLib.Operator.EQ, "234", "25");
 
             List<Person> result = CrystallizeBackendLib.WebRequest<Person>.GetData(request);
