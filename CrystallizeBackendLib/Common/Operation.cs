@@ -6,12 +6,12 @@ namespace CrystallizeBackendLib
 {
     public enum Operator
     {
-        EQ,
-        NE,
-        LE,
-        LT,
-        GE,
-        GT,
+        EQ,             // ==
+        NE,             // !=
+        LE,             // <=
+        LT,             // <
+        GE,             // >=
+        GT,             // >
         NOT_NULL,
         NULL,
         CONTAINS,
