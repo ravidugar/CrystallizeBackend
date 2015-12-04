@@ -9,11 +9,9 @@ namespace CrystallizeBackend
     {
         public static void DeleteData()
         {
-            CrystallizeBackendLib.Request request = new CrystallizeBackendLib.Request();
+            CrystallizeBackendLib.Request request = new CrystallizeBackendLib.Request("Test");
 
             request.ID = "123";
-
-            request.table = "Test";
             
             request.requestType = CrystallizeBackendLib.RequestType.DELETE;
 

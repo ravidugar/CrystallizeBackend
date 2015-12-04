@@ -29,8 +29,9 @@ namespace CrystallizeBackendLib
 
     public class Request
     {
-        public Request()
+        public Request(string tablename)
         {
+            this.table = tablename;
             this.query = new List<Query>();
             this.filters = new List<string>();
         }

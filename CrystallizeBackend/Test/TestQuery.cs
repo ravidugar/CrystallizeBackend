@@ -9,17 +9,15 @@ namespace CrystallizeBackend
     {
         public static void GetData()
         {
-            CrystallizeBackendLib.Request request = new CrystallizeBackendLib.Request();
+            CrystallizeBackendLib.Request request = new CrystallizeBackendLib.Request("Test");
 
             request.requestType = CrystallizeBackendLib.RequestType.QUERY;
 
             request.ID = "234";
 
-            request.table = "Test";
+            request.AddQuery("ID", CrystallizeBackendLib.Operator.EQ, "234", "25");
 
-            request.AddQuery("ID", CrystallizeBackendLib.Operator.EQ, new List<object>(){"234"});
-
-            List<Person> result = CrystallizeBackendLib.WebRequest<List<Person>>.GetData(request);
+            List<Person> result = CrystallizeBackendLib.WebRequest<Person>.GetData(request);
             
             Console.WriteLine(result[0].Name);
         }

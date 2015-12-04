@@ -8,7 +8,7 @@ namespace CrystallizeBackendLib
 {
     public class WebRequest<T>
     {
-        private static Response GetResponse(Request request)
+        private static Response<T> GetResponse(Request request)
         {
             string requestURIString = GetRequestURIString(request.requestType);
 
@@ -32,7 +32,7 @@ namespace CrystallizeBackendLib
             // code to get response
             HttpWebResponse webResponse = (HttpWebResponse)webRequest.GetResponse();
 
-            Response response = new Response();
+            Response<T> response = new Response<T>();
 
             if (webResponse.StatusCode != HttpStatusCode.OK) return response; // failure
 
@@ -45,26 +45,26 @@ namespace CrystallizeBackendLib
 #if DEBUG
             Console.WriteLine(result);
 #endif
-            response = JSONConverter<Response>.DeserializeObject(result);
+            response = JSONConverter<Response<T>>.DeserializeObject(result);
 
             return response;
         }
 
-        public static T GetData(Request request)
+        public static List<T> GetData(Request request)
         {
             request.requestType = RequestType.QUERY;
 
             // code to get response
-            Response response = GetResponse(request);
+            Response<T> response = GetResponse(request);
 
             if (response.ok == false)
             {
-                T retVal = (T)(response.results);
+                List<T> retVal = response.results;
 
                 return retVal;
             }
 
-            return default(T);
+            return null;
         }
 
         public static bool SaveData(Request request, T obj)
@@ -73,7 +73,7 @@ namespace CrystallizeBackendLib
 
             request.document = obj;
 
-            Response response = GetResponse(request);
+            Response<T> response = GetResponse(request);
 
             return response.ok;
         }
@@ -82,7 +82,7 @@ namespace CrystallizeBackendLib
         {
             request.requestType = RequestType.DELETE;
 
-            Response response = GetResponse(request);
+            Response<T> response = GetResponse(request);
 
             return response.ok;
         }

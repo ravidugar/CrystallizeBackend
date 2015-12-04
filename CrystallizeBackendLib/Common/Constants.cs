@@ -6,10 +6,6 @@ namespace CrystallizeBackendLib
 {
     public class Constants
     {
-        // initialize(string api){}
-        // logging
-
-        
         /// <summary>
         /// all the strings are readonly so that they can be intialized using constructor
         /// </summary>

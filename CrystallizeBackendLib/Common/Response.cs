@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CrystallizeBackendLib
 {
-    public class Response
+    public class Response<T>
     {
         // call back, reuest obect class change// get rid of webreuest
         /// <summary>
@@ -15,7 +15,7 @@ namespace CrystallizeBackendLib
         /// <summary>
         /// store the return data
         /// </summary>
-        public object results { get; set; }
+        public List<T> results { get; set; }
 
         /// <summary>
         /// store the message

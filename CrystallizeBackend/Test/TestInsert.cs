@@ -11,29 +11,21 @@ namespace CrystallizeBackend
         public string Lastname{get;set;}
     }
 
+    public class Person1 : Person
+    {
+        public string CollegeName { get; set; }
+    }
 
     class TestInsert
     {
-
-
         public static void SaveData()
         {
-            Person person = new Person() { Age = 25, Name = new FullName() { Firstname = "Ravi", Lastname = "Dugar" } };
+            Person person = new Person() {Age = 25, Name = new FullName() { Firstname = "Ravi", Lastname = "Dugar" } };
 
-            string test = CrystallizeBackendLib.JSONConverter<Person>.SerializeObject(person);
-
-            Console.WriteLine(test);
-
-            Person x = CrystallizeBackendLib.JSONConverter<Person>.DeserializeObject(test);
-
-
-
-            CrystallizeBackendLib.Request request = new CrystallizeBackendLib.Request();
+            CrystallizeBackendLib.Request request = new CrystallizeBackendLib.Request("Test");
 
             request.ID = "234";
-            
-            request.table = "Test";
-            
+                        
             request.requestType = CrystallizeBackendLib.RequestType.INSERT;
 
             bool retVal = CrystallizeBackendLib.WebRequest<object>.SaveData(request, person);
