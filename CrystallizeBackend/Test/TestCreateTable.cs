@@ -9,7 +9,7 @@ namespace CrystallizeBackend
     {
         public static void CreateTable()
         {
-            var request = new CrystallizeBackendLib.Request<object>("Test1");
+            var request = new CrystallizeBackendLib.Request<object>("Test2");
 
             request.CreateTable();
         }

@@ -24,7 +24,7 @@ namespace CrystallizeBackend
     {
         static void Main(string[] args)
         {
-            CrystallizeBackendLib.CrystallizeBackendLib.Initialize("http://presentation-9cbfqv4eji.elasticbeanstalk.com/");
+            CrystallizeBackendLib.CrystallizeBackendLib.Initialize("http://demo-ujyzsgm9iz.elasticbeanstalk.com/");
 
             TestCreateTable.CreateTable();
 
