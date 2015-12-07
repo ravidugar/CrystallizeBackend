@@ -6,8 +6,14 @@ using System.IO;
 
 namespace CrystallizeBackendLib
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Query
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public Query()
         {
             this.values = new List<object>();
@@ -29,8 +35,16 @@ namespace CrystallizeBackendLib
         public List<object> values { get; set; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class Request<T>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tablename"></param>
         public Request(string tablename)
         {
             this.table = tablename;
@@ -154,6 +168,30 @@ namespace CrystallizeBackendLib
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tablename"></param>
+        /// <param name="keyName"></param>
+        /// <param name="keyType"></param>
+        /// <param name="writeThroughput"></param>
+        /// <param name="readThroughput"></param>
+        /// <returns></returns>
+        public Response<T> CreateTable(string tablename, string keyName = "ID", TableKeyType keyType = TableKeyType.String, int writeThroughput = 5, int readThroughput = 5)
+        {
+            this.requestType = RequestType.CREATE_TABLE;
+
+            this.table = tablename;
+
+            this.key = new Key() { name = keyName, type = keyType.ToString() };
+
+            this.throughput = new Throughput() { write = writeThroughput, read = readThroughput };
+
+            Response<T> response = GetResponse();
+
+            return response;
+        }
+
         #endregion
 
         #region Methods with Callbacks
@@ -204,6 +242,31 @@ namespace CrystallizeBackendLib
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tablename"></param>
+        /// <param name="callback"></param>
+        /// <param name="keyName"></param>
+        /// <param name="keyType"></param>
+        /// <param name="writeThroughput"></param>
+        /// <param name="readThroughput"></param>
+        /// <returns></returns>
+        public Response<T> CreateTable(string tablename, Action<object> callback, string keyName = "ID", TableKeyType keyType = TableKeyType.String, int writeThroughput = 5, int readThroughput = 5)
+        {
+            this.requestType = RequestType.CREATE_TABLE;
+
+            this.table = tablename;
+
+            this.key = new Key() { name = keyName, type = keyType.ToString() };
+
+            this.throughput = new Throughput() { write = writeThroughput, read = readThroughput };
+
+            Response<T> response = GetResponse();
+
+            return response;
+        }
+
         #endregion
 
         /// <summary>
@@ -221,6 +284,8 @@ namespace CrystallizeBackendLib
                 case RequestType.INSERT: return retVal + Constants.INSERT_SERVLET;
 
                 case RequestType.QUERY: return retVal + Constants.QUERY_SERVLET;
+
+                case RequestType.CREATE_TABLE: return retVal + Constants.CREATE_TABLE_SERVLET;
             }
 
             return retVal;
@@ -260,6 +325,49 @@ namespace CrystallizeBackendLib
         /// </summary>
         public List<string> filters { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public Throughput throughput { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Key key { get; set; }
+
         #endregion
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class Throughput
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public int write { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public int read { get; set; }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class Key
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public string name { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string type { get; set; }
+
     }
 }

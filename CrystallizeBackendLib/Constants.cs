@@ -13,5 +13,6 @@ namespace CrystallizeBackendLib
         public static readonly string INSERT_SERVLET = "/Insert";
         public static readonly string DELETE_SERVLET = "/Delete";
         public static readonly string QUERY_SERVLET = "/Query";
+        public static readonly string CREATE_TABLE_SERVLET = "/CreateTable";
     }
 }

@@ -11,7 +11,7 @@ namespace CrystallizeBackend
         {
            var request = new CrystallizeBackendLib.Request<Person>("Test");
 
-            request.AddQuery("Age", CrystallizeBackendLib.Operator.EQ, "234", "25");
+            request.AddQuery("ID", CrystallizeBackendLib.Operator.EQ, "234", "25");
 
             var response = request.GetData();
 
