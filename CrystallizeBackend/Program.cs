@@ -26,6 +26,8 @@ namespace CrystallizeBackend
         {
             CrystallizeBackendLib.CrystallizeBackendLib.Initialize("http://presentation-9cbfqv4eji.elasticbeanstalk.com/");
 
+            TestCreateTable.CreateTable();
+
             TestInsert.SaveData();
 
             TestQuery.GetData();

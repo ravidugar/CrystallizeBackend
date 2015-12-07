@@ -171,17 +171,14 @@ namespace CrystallizeBackendLib
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="tablename"></param>
         /// <param name="keyName"></param>
         /// <param name="keyType"></param>
         /// <param name="writeThroughput"></param>
         /// <param name="readThroughput"></param>
         /// <returns></returns>
-        public Response<T> CreateTable(string tablename, string keyName = "ID", TableKeyType keyType = TableKeyType.String, int writeThroughput = 5, int readThroughput = 5)
+        public Response<T> CreateTable(string keyName = "ID", TableKeyType keyType = TableKeyType.String, int writeThroughput = 5, int readThroughput = 5)
         {
             this.requestType = RequestType.CREATE_TABLE;
-
-            this.table = tablename;
 
             this.key = new Key() { name = keyName, type = keyType.ToString() };
 
@@ -245,18 +242,15 @@ namespace CrystallizeBackendLib
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="tablename"></param>
         /// <param name="callback"></param>
         /// <param name="keyName"></param>
         /// <param name="keyType"></param>
         /// <param name="writeThroughput"></param>
         /// <param name="readThroughput"></param>
         /// <returns></returns>
-        public Response<T> CreateTable(string tablename, Action<object> callback, string keyName = "ID", TableKeyType keyType = TableKeyType.String, int writeThroughput = 5, int readThroughput = 5)
+        public Response<T> CreateTable(Action<object> callback, string keyName = "ID", TableKeyType keyType = TableKeyType.String, int writeThroughput = 5, int readThroughput = 5)
         {
             this.requestType = RequestType.CREATE_TABLE;
-
-            this.table = tablename;
 
             this.key = new Key() { name = keyName, type = keyType.ToString() };
 
