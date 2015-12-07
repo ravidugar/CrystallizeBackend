@@ -63,6 +63,10 @@ namespace CrystallizeBackendLib
             this.filters.AddRange(filterNames);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private Response<T> GetResponse()
         {
             string requestURIString = GetRequestURIString();
@@ -105,6 +109,12 @@ namespace CrystallizeBackendLib
             return response;
         }
 
+        #region Methods without Callbacks
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public Response<T> GetData()
         {
             this.requestType = RequestType.QUERY;
@@ -115,6 +125,11 @@ namespace CrystallizeBackendLib
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public Response<T> SaveData(T obj)
         {
             this.requestType = RequestType.INSERT;
@@ -126,6 +141,10 @@ namespace CrystallizeBackendLib
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public Response<T> DeleteData()
         {
             this.requestType = RequestType.DELETE;
@@ -134,7 +153,63 @@ namespace CrystallizeBackendLib
 
             return response;
         }
-        
+
+        #endregion
+
+        #region Methods with Callbacks
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="callback"></param>
+        /// <returns></returns>
+        public Response<T> GetData(Action<object> callback)
+        {
+            this.requestType = RequestType.QUERY;
+
+            // code to get response
+            Response<T> response = GetResponse();
+
+            return response;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="callback"></param>
+        /// <returns></returns>
+        public Response<T> SaveData(T obj, Action<object> callback)
+        {
+            this.requestType = RequestType.INSERT;
+
+            this.document = obj;
+
+            Response<T> response = GetResponse();
+
+            return response;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="callback"></param>
+        /// <returns></returns>
+        public Response<T> DeleteData(Action<object> callback)
+        {
+            this.requestType = RequestType.DELETE;
+
+            Response<T> response = GetResponse();
+
+            return response;
+        }
+
+        #endregion
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private String GetRequestURIString()
         {
             string retVal = Constants.JAVA_API_ADDRESSS;
