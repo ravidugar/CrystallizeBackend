@@ -7,7 +7,7 @@ The code makes HTTP/HTTPS web requests to the JAVA based server hosted on Amazon
 	b) Save data to the database
 	c) Delete data from the database
 	d) Create tables in database
-	e) Delete tables from databse
+	e) Delete tables from the database
 	
 --------------------------------------------------
 -------------------------------------------------- 
