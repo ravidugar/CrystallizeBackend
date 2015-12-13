@@ -22,7 +22,7 @@ namespace CrystallizeBackend
         {
             CrystallizeBackendLib.CrystallizeBackendLib.Initialize("http://demo-ujyzsgm9iz.elasticbeanstalk.com/");
 
-            TestCreateTable.CreateTable();
+            TestAddTable.AddTable();
 
             TestInsert.SaveData();
 
@@ -52,7 +52,7 @@ namespace CrystallizeBackend
     /// </summary>
     class Person1 : Person
     {
-        public string CollegeName { get; set; }
+        public List<string> CollegeName { get; set; }
     }
 
     /// <summary>
