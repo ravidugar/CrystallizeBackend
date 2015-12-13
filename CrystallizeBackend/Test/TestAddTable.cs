@@ -27,7 +27,7 @@ namespace CrystallizeBackend
         {
             var request = new CrystallizeBackendLib.Request<object>("Test");
 
-            var response = request.CreateTable();
+            var response = request.AddTable();
 
             if (response.ok == false)
             {
@@ -42,7 +42,7 @@ namespace CrystallizeBackend
         {
             var request = new CrystallizeBackendLib.Request<object>("Test2");
 
-            var response = request.CreateTable(keyName:"ID", keyType:CrystallizeBackendLib.TableKeyType.Integer, writeThroughput:3, readThroughput:3); 
+            var response = request.AddTable(keyName:"ID", keyType:CrystallizeBackendLib.TableKeyType.Integer, writeThroughput:3, readThroughput:3); 
 
             if (response.ok == false)
             {

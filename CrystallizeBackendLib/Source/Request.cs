@@ -183,7 +183,7 @@ namespace CrystallizeBackendLib
         /// <param name="writeThroughput">Write capacity for the table with default as 5 units</param>
         /// <param name="readThroughput">Read capacity for the table with default as 5 units</param>
         /// <returns>Response object with ok as true in case of success and false along with a failure message otherwise</returns>
-        public Response<T> CreateTable(string keyName = "ID", TableKeyType keyType = TableKeyType.String, int writeThroughput = 5, int readThroughput = 5)
+        public Response<T> AddTable(string keyName = "ID", TableKeyType keyType = TableKeyType.String, int writeThroughput = 5, int readThroughput = 5)
         {
             this.requestType = RequestType.ADD_TABLE;
 
@@ -282,7 +282,7 @@ namespace CrystallizeBackendLib
         /// <param name="writeThroughput">Write capacity for the table with default as 5 units</param>
         /// <param name="readThroughput">Read capacity for the table with default as 5 units</param>
         /// <returns>Response object with ok as true in case of success and false along with a failure message otherwise</returns>
-        public Response<T> CreateTable(Action<object> callback, string keyName = "ID", TableKeyType keyType = TableKeyType.String, int writeThroughput = 5, int readThroughput = 5)
+        public Response<T> AddTable(Action<object> callback, string keyName = "ID", TableKeyType keyType = TableKeyType.String, int writeThroughput = 5, int readThroughput = 5)
         {
             this.requestType = RequestType.ADD_TABLE;
 
