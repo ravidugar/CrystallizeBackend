@@ -7,4 +7,26 @@ The code makes HTTP/HTTPS web requests to the JAVA based server hosted on Amazon
 	b) Save data to the database
 	c) Delete data from the database
 	d) Create tables in database
-	e) Delete tables from databse 
+	e) Delete tables from databse
+	
+--------------------------------------------------
+-------------------------------------------------- 
+
+Installation (Specific to the Crystallize game as it uses Unity framework)
+--------------------------------------------------------------------------
+Copy the contents of the Source folder into the unity project.
+Copy the Newtonsoft.Json if not used earlier.
+Compile the unity project.
+
+--------------------------------------------------
+--------------------------------------------------
+
+Contact Informtaion
+--------------------
+The CS 5150 team (Fall semester 2015) : 
+Ravi Dugar - rd398@cornell.edu
+Manvi Malik - mm2365@cornell.edu
+Peter Baker - prb76@cornell.edu
+Tanvi Mehta - tmm259@cornell.edu
+Eileen Liu - el544@cornell.edu
+
