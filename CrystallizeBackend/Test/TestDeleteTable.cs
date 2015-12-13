@@ -6,24 +6,22 @@ using System.Text;
 namespace CrystallizeBackend
 {
     /// <summary>
-    /// Class to test delete a row from a table feature
+    /// Class to test delete table feature
     /// </summary>
-    class TestDelete
+    class TestDeleteTable
     {
         /// <summary>
         /// 
         /// </summary>
-        public static void DeleteData()
+        public static void DeleteTable()
         {
             var request = new CrystallizeBackendLib.Request<object>("Test");
 
-            request.ID = "234";
-            
-            var response = request.DeleteData();
-           
+            var response = request.DeleteTable();
+
             if (response.ok == false)
             {
-                Console.WriteLine("Delete Test failed : " + response.message);
+                Console.WriteLine("Delete table failed : " + response.message);
             }
         }
     }

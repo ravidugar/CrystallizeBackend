@@ -5,19 +5,14 @@ using System.Text;
 
 namespace CrystallizeBackend
 {
-    public class FullName
-    {
-        public string Firstname {get;set;}
-        public string Lastname{get;set;}
-    }
-
-    public class Person1 : Person
-    {
-        public string CollegeName { get; set; }
-    }
-
+    /// <summary>
+    /// Class to test save data to table feature
+    /// </summary>
     class TestInsert
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static void SaveData()
         {
             var person = new Person() {Age = 25, Name = new FullName() { Firstname = "Ravi", Lastname = "Dugar" } };
@@ -26,11 +21,11 @@ namespace CrystallizeBackend
 
             request.ID = "234";
                         
-            var retVal = request.SaveData(person);
+            var response = request.SaveData(person);
 
-            if (retVal.ok == false)
+            if (response.ok == false)
             {
-                Console.WriteLine("Insert Test failed");
+                Console.WriteLine("Insert Test failed : " + response.message);
             }
         }
     }

@@ -47,6 +47,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test\TestCreateTable.cs" />
     <Compile Include="Test\TestDelete.cs" />
+    <Compile Include="Test\TestDeleteTable.cs" />
     <Compile Include="Test\TestInsert.cs" />
     <Compile Include="Test\TestQuery.cs" />
   </ItemGroup>

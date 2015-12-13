@@ -5,8 +5,14 @@ using System.Text;
 
 namespace CrystallizeBackend
 {
+    /// <summary>
+    /// Class to test Query feature
+    /// </summary>
     class TestQuery
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static void GetData()
         {
            var request = new CrystallizeBackendLib.Request<Person>("Test");
@@ -25,7 +31,7 @@ namespace CrystallizeBackend
             }
             else
             {
-                Console.WriteLine("Error : " + response.message);
+                Console.WriteLine("Query failed : " + response.message);
             }
         }
     }

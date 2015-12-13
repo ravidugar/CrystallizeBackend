@@ -4,6 +4,9 @@ using System.Text;
 
 namespace CrystallizeBackendLib
 {
+    /// <summary>
+    /// Different type of operations supported by DynamoDB
+    /// </summary>
     public enum Operator
     {
         EQ,             // ==

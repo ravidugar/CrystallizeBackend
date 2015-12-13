@@ -5,13 +5,14 @@ using System.Text;
 namespace CrystallizeBackendLib
 {
     /// <summary>
-    /// 
+    /// Type of functions support by the JAVA API
     /// </summary>
     public enum RequestType
     {
         INSERT,
         DELETE,
         QUERY,
-        CREATE_TABLE,
+        ADD_TABLE,
+        DELETE_TABLE
     }
 }
