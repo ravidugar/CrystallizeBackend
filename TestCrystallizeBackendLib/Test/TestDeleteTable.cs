@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CrystallizeBackend
+namespace TestCrystallizeBackendLib
 {
     /// <summary>
     /// Class to test delete table feature

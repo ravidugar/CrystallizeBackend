@@ -6,7 +6,7 @@ using System.Net;
 using System.IO;
 
 
-namespace CrystallizeBackend
+namespace TestCrystallizeBackendLib
 {
     /// <summary>
     /// Start point for the test program application
